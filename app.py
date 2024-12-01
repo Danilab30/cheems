@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from entities.ciudad import Ciudad
 from entities.envio import Envio
 
+
 app = Flask(__name__)
 
 @app.route('/')

@@ -18,3 +18,4 @@ class Envio:
         finally:
             cursor.close()
             connection.close() 
+            
