@@ -67,7 +67,7 @@ def save():
 def update(id):
     data = request.json
     envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=data['fecha_envio'], remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
-    result = Envio.update(id, origen, destino, fecha_envio, remitente, destinatario, guia)
+    result = Envio.update(id, envio)
     if result ==0:
         return jsonify({'error':'El registro de envio no existe'}), 404
     return jsonify({'id':id},201)
