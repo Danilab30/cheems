@@ -56,7 +56,7 @@ def envio_registro():
 @app.route('/envio', methods=['POST'])
 def save_envio():
     data = request.json
-    envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=data['fecha_envio'],
+    envio = Envio(origen=data['origen'], destino=data['destino'],
                   remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     id = Envio.save(envio)
     return jsonify({'id': id}), 201
@@ -64,7 +64,7 @@ def save_envio():
 @app.route('/envio/<int:id>', methods=['PUT'])
 def update_envio(id):
     data = request.json
-    envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=data['fecha_envio'],
+    envio = Envio(origen=data['origen'], destino=data['destino'],
                   remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     result = Envio.update(id, envio)
     if result == 0:
