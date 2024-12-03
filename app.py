@@ -31,7 +31,7 @@ def save_ciudad():
     return jsonify({'id': id}), 201
 
 @app.route('/ciudad/<int:id>', methods=['PUT'])
-def update(id):
+def update_ciudad(id):
     data = request.json
     ciudad = Ciudad(nombre=data['nombre'], codigo=data['codigo'])
     result = Ciudad.update(id, ciudad)
@@ -56,13 +56,13 @@ def envio_registro():
 @app.route('/envio', methods=['POST'])
 def save_envio():
     data = request.json
-    envio = Envio(origen=data['origen'], destino=data['destino'],
+    envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=None,
                   remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     id = Envio.save(envio)
     return jsonify({'id': id}), 201
 
 @app.route('/envio/<int:id>', methods=['PUT'])
-def update(id):
+def update_envio(id):
     data = request.json
     envio = Envio(origen=data['origen'], destino=data['destino'],
                   remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])

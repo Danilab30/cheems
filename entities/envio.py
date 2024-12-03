@@ -2,8 +2,7 @@ from persistence.db import get_db_connection
 from mysql.connector import Error
 
 class Envio:
-    def __init__(self, id, origen, destino, fecha_envio, remitente, destinatario, guia):
-        self.id = id 
+    def __init__(self, origen, destino, fecha_envio, remitente, destinatario, guia):
         self.origen = origen
         self.destino = destino
         self.fecha_envio = fecha_envio
@@ -29,7 +28,7 @@ class Envio:
         try:
             connection = get_db_connection()
             cursor = connection.cursor()
-            cursor.execute('INSERT INTO envio(origen, destino, fecha_envio, remitente, destinatario, guia) VALUES (%s, %s, %s, %s, %s, %s)', (envio.origen, envio.destino, envio.fecha_envio, envio.remitente, envio.destinatario, envio.guia))
+            cursor.execute('INSERT INTO envio(origen, destino, remitente, destinatario, guia) VALUES (%s, %s, %s, %s, %s)', (envio.origen, envio.destino, envio.remitente, envio.destinatario, envio.guia))
             connection.commit()
             return cursor.lastrowid
         except Error as e:
