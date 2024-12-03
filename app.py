@@ -25,7 +25,7 @@ def ciudad_registro():
     return render_template('ciudad.html')
     
 @app.route('/ciudad', methods=['POST'])
-def save():
+def save_ciudad():
     data = request.json
     ciudad = Ciudad(nombre=data['nombre'], codigo=data['codigo'])
     id = Ciudad.save(ciudad)
@@ -33,13 +33,13 @@ def save():
 
 
 @app.route('/ciudad/<int:id>', methods=['PUT'])
-def update(id):
+def update_ciudad():  #
     data = request.json
     ciudad = Ciudad(nombre=data['nombre'], codigo=data['codigo'])
     result = Ciudad.update(id, ciudad)
-    if result ==0:
-        return jsonify({'error':'El registro de ciudad no existe'}), 404
-    return jsonify({'id':id},201)
+    if result == 0:
+        return jsonify({'error': 'El registro de ciudad no existe'}), 404
+    return jsonify({'id': id}), 201
 
 @app.route('/envios')
 def envios():
@@ -56,7 +56,7 @@ def envio_registro():
     return render_template('envio.html')
     
 @app.route('/envio', methods=['POST'])
-def save():
+def save_envio():
     data = request.json
     envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=data['fecha_envio'], remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     id = Envio.save(envio)
@@ -64,13 +64,13 @@ def save():
 
 
 @app.route('/envio/<int:id>', methods=['PUT'])
-def update(id):
+def update_envio():  
     data = request.json
     envio = Envio(origen=data['origen'], destino=data['destino'], fecha_envio=data['fecha_envio'], remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     result = Envio.update(id, envio)
-    if result ==0:
-        return jsonify({'error':'El registro de envio no existe'}), 404
-    return jsonify({'id':id},201)
+    if result == 0:
+        return jsonify({'error': 'El registro de envio no existe'}), 404
+    return jsonify({'id': id}), 201
 
     
 if __name__ == '__main__':
