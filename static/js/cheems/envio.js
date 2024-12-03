@@ -7,20 +7,19 @@ function registrar(id){
     })
 }
 
-function save(){
+function save_envio(){
     
     const origen = document.getElementById('form-origen').value;
     const destino = document.getElementById('form-destino').value;
-    const fecha_envio = document.getElementById('form-fecha_envio').value;
     const remitente = document.getElementById('form-remitente').value;
     const destinatario = document.getElementById('form-destinatario').value;
     const guia = document.getElementById('form-guia').value;
 
-    const data = {origen, destino, fecha_envio, remitente, destinatario, guia};
+    const data = {origen, destino, remitente, destinatario, guia};
 
 
 
-    fetch('/ciudad', {
+    fetch('/envio', {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify(data)
