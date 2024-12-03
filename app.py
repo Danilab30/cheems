@@ -39,6 +39,15 @@ def update_ciudad(id):
         return jsonify({'error': 'El registro de ciudad no existe'}), 404
     return jsonify({'id': id}), 201
 
+@app.route('/ciudad-eliminar/<int:id>', methods=['DELETE'])
+def delete_ciudad(id):
+    result = Ciudad.delete(id)
+    if result == 0:
+        return jsonify({'error': 'La ciudad no existe'}), 404
+    return jsonify({'mensaje': 'Ciudad eliminada correctamente'}), 200
+
+# METODOS ENVIOS
+
 @app.route('/envios')
 def envios():
     envios = Envio.get_all()

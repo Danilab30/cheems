@@ -7,7 +7,7 @@ function registrar(id){
     })
 }
 
-function save(){
+function save_ciudad(){
     const nombre = document.getElementById('form-nombre').value;
     const codigo = document.getElementById('form-codigo').value;
     
@@ -27,4 +27,25 @@ function save(){
         }
     })
     .catch(error => console.error('Error:', error));
+}
+
+function eliminar(id) {
+    const url = `/ciudad-eliminar/${id}`;
+    
+    if (confirm('¿Estás seguro de que deseas eliminar esta ciudad?')) {
+        fetch(url, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.status === 200) {
+                alert('La ciudad se eliminó correctamente.');
+                location.reload();
+            } else if (response.status === 404) {
+                alert('La ciudad no existe.');
+            } else {
+                alert(`Ocurrió un error al eliminar: ${response.status}`);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
 }
