@@ -9,7 +9,7 @@
                     <p class="font-size-14">Ingresa el número de rastreo para obtener la información del estado actual de tu paquete</p>
                     <input type="text" class="form-control" id="searchList" autocomplete="off" placeholder="Ingresa los 10 dígitos de la guía">
                     <div class="d-flex flex-wrap gap-2 mt-4">
-                        <a href="javascript: void(0);" class="btn btn-warning">Rastrear</a>
+                        <a href="#" class="btn btn-warning" onclick="rastreoGuia()">Rastrear</a>
                         <a href="{{ url_for('costos') }}" class="btn btn-light">Costos de envío</a>
                     </div>
                 </div>
@@ -171,4 +171,15 @@
         </div>
     </div>
 </section>
+<script>
+    function rastreoGuia() {
+        const guia = document.getElementById('searchList').value.trim(); // Obtiene el valor del input
+        if (guia && guia.length === 10) {
+            // Redirigir a la página de rastreo con la guía como parámetro
+            window.location.href = `{{ url_for('rastreos') }}?guia=${guia}`;
+        } else {
+            alert('Por favor, ingresa un número de guía válido de 10 dígitos.');
+        }
+    }
+</script>
 {% include 'footer.html' %}

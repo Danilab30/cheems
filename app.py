@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from entities.ciudad import Ciudad
 from entities.envio import Envio
+from entities.rastreo import Rastreo
 
 app = Flask(__name__)
 
@@ -12,6 +13,12 @@ def index():
 @app.route('/costos')
 def costos():
     return render_template('costos.html')
+
+@app.route('/rastreos')
+def rastreos():
+    guia = request.args.get('guia', '')
+    rastreos = Rastreo.get_all()
+    return render_template('rastreos.html', guia=guia, rastreos=rastreos)
 
 @app.route('/ciudades')
 def ciudades():
