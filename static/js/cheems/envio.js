@@ -34,3 +34,23 @@ function save_envio(){
     })
     .catch(error => console.error('Error:', error));
 }
+function eliminar(id) {
+    const url = `/envio-eliminar/${id}`;
+    
+    if (confirm('¿Estás seguro de que deseas eliminar este envio?')) {
+        fetch(url, {
+            method: 'DELETE',
+        })
+        .then(response => {
+            if (response.status === 200) {
+                alert('El envio se eliminó correctamente.');
+                location.reload();
+            } else if (response.status === 404) {
+                alert('El envio no existe.');
+            } else {
+                alert(`Ocurrió un error al eliminar: ${response.status}`);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}

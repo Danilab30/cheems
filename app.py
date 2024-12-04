@@ -80,6 +80,12 @@ def update_envio(id):
         return jsonify({'error':'El registro de envio no existe'}), 404
     return jsonify({'id':id},201)
 
+@app.route('/envio-eliminar/<int:id>', methods=['DELETE'])
+def delete_envio(id):
+    result = Envio.delete(id)
+    if result == 0:
+        return jsonify({'error': 'El envio no existe'}), 404
+    return jsonify({'mensaje': 'Envio eliminado correctamente'}), 200
     
 if __name__ == '__main__':
     app.run()
