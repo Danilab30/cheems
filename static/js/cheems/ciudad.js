@@ -4,22 +4,35 @@ function registrar(id){
         $('#modal_info').html(data);
         $('#modal_info').modal({ backdrop: 'static', keyboard: false});
         $('#modal_info').modal('show');
+        
+        if (id) {
+            document.getElementById('form-id').value = id;
+        }
     })
 }
 
 function save_ciudad(){
+    const id = document.getElementById('form-id').value;
     const nombre = document.getElementById('form-nombre').value;
     const codigo = document.getElementById('form-codigo').value;
     
     const data = {nombre, codigo};
 
-    fetch('/ciudad', {
-        method: 'POST',
+    let url = '/ciudad';
+    let method = 'POST';
+
+    if (id) {
+        url = `/ciudad/${id}`;
+        method = 'PUT';
+    }
+
+    fetch(url, {
+        method: method,
         headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify(data)
     })
     .then(response => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
             alert('El registro se guardó correctamente');
             location.reload();
         } else {
