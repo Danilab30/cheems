@@ -9,6 +9,10 @@ def index():
     ciudades_lista = Ciudad.get_all()
     return render_template('index.html', ciudades=ciudades_lista)
 
+@app.route('/costos')
+def costos():
+    return render_template('costos.html')
+
 @app.route('/ciudades')
 def ciudades():
     ciudades = Ciudad.get_all()
