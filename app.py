@@ -61,9 +61,8 @@ def delete_ciudad(id):
 
 @app.route('/envios')
 def envios():
-    ciudades = Ciudad.get_all()  # Asegúrate de que esta función retorna las ciudades correctamente
-    print(ciudades)  # Agrega esto para ver los resultados en la consola
-    envios = Envio.get_all()  # Si estás mostrando los envíos también, asegúrate de obtenerlos
+    ciudades = Ciudad.get_all()
+    envios = Envio.get_all()
     return render_template('envios.html', envios=envios, ciudades=ciudades)
 
 
