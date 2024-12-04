@@ -42,8 +42,8 @@ class Envio:
         try:
             connection = get_db_connection()
             cursor = connection.cursor()
-            cursor.execute('UPDATE envio SET origen = %s, destino = %s, fecha_envio = %s, remitente = %s, destinatario = %s, guia = %s WHERE id = %s',
-                           (envio.origen, envio.destino, envio.fecha_envio, envio.remitente, envio.destinatario, envio.guia, id))
+            cursor.execute('UPDATE envio SET origen = %s, destino = %s, remitente = %s, destinatario = %s, guia = %s WHERE id = %s',
+                           (envio.origen, envio.destino, envio.remitente, envio.destinatario, envio.guia, id))
             connection.commit()
             return cursor.rowcount
         except Error as e:

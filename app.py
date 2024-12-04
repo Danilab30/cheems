@@ -73,7 +73,7 @@ def save_envio():
 @app.route('/envio/<int:id>', methods=['PUT'])
 def update_envio(id):
     data = request.json
-    envio = Envio(origen=data['origen'], destino=data['destino'],
+    envio = Envio(origen=data['origen'],  destino=data['destino'], fecha_envio= None,
                   remitente=data['remitente'], destinatario=data['destinatario'], guia=data['guia'])
     result = Envio.update(id, envio)
     if result ==0:
