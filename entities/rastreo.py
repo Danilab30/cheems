@@ -9,12 +9,17 @@ class Rastreo:
         self.guia = guia
         
     @classmethod
-    def get_all(cls):
+    def get_all(cls, guia):
         try:
             connection = get_db_connection()
             cursor = connection.cursor(dictionary=True)
-            cursor.execute('SELECT * FROM rastreo')
-            #cursor.execute('SELECT * FROM rastreo WHERE guia = %s'), (rastreo.guia)
+            cursor.execute('''
+                SELECT r.locacion, r.fecha, r.estado, e.guia, c.codigo
+                FROM rastreo r
+                JOIN envio e ON r.guia = e.id
+                JOIN ciudad c ON r.locacion = c.id
+                WHERE e.guia = %s
+            ''', (guia,))
             return cursor.fetchall()
         except Error as e:
             return str(e)

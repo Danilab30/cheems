@@ -11,13 +11,14 @@ class Ciudad:
         try:
             connection = get_db_connection()
             cursor = connection.cursor(dictionary=True)
-            cursor.execute('SELECT * FROM ciudad')
-            return cursor.fetchall()
+            cursor.execute("SELECT id, nombre, codigo FROM ciudad")
+            ciudades = cursor.fetchall()
+            return ciudades
         except Error as e:
             return str(e)
         finally:
             cursor.close()
-            connection.close()  
+            connection.close()
             
     @classmethod
     def save(cls, ciudad):

@@ -17,7 +17,7 @@ def costos():
 @app.route('/rastreos')
 def rastreos():
     guia = request.args.get('guia', '')
-    rastreos = Rastreo.get_all()
+    rastreos = Rastreo.get_all(guia)
     return render_template('rastreos.html', guia=guia, rastreos=rastreos)
 
 @app.route('/ciudades')
@@ -61,8 +61,12 @@ def delete_ciudad(id):
 
 @app.route('/envios')
 def envios():
-    envios = Envio.get_all()
-    return render_template('envios.html', envios=envios)
+    ciudades = Ciudad.get_all()  # Asegúrate de que esta función retorna las ciudades correctamente
+    print(ciudades)  # Agrega esto para ver los resultados en la consola
+    envios = Envio.get_all()  # Si estás mostrando los envíos también, asegúrate de obtenerlos
+    return render_template('envios.html', envios=envios, ciudades=ciudades)
+
+
 
 @app.route('/envio', methods=['GET'])
 def get_envios():
